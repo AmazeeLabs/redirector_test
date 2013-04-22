@@ -1,0 +1,1 @@
+http://swissfoundations.ch/de/event/stiftungssymposium 
