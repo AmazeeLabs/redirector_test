@@ -20,7 +20,7 @@ get('/index', function () {
 
     if($domains[$_SERVER['HTTP_HOST']] == true) {
         _log(date(DATE_ISO8601).' - [SUCCESS] - REDIRECTED '.$_SERVER['HTTP_HOST'].' >> '.trim($domains[$_SERVER['HTTP_HOST']]));
-        redirect(302, $domains[$_SERVER['HTTP_HOST']]);
+        redirect($domains[$_SERVER['HTTP_HOST']]);
         //header('X-Powered-by : AWESOME REDIRECTR!');
     }
     else
