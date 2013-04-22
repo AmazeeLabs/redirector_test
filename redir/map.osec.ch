@@ -1,0 +1,1 @@
+http://maps.osec.ch
