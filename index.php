@@ -26,7 +26,7 @@ get('/index', function () {
     else
     {
         echo "No configuration found for this Domain!";
-        _log(date(DATE_ISO8601).' - [ERROR] - Domain '.$_SERVER['HTTP_HOST'].'has no config');
+        _log(date(DATE_ISO8601).' - [ERROR] - Domain '.$_SERVER['HTTP_HOST'].' has no config');
     }
 
 });
