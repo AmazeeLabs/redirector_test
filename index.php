@@ -19,7 +19,10 @@ get('/index', function () {
         $data = glob('redir/*');
 
         foreach ($data as $d) {
+            // load redirections from filesystem
             $redirect[str_replace('redir/', '',$d)] = file_get_contents($d);
+            // modify array key to match www. domains too
+            $redirect[str_replace('redir/', 'www.',$d)] = file_get_contents($d);
         }
 
         return $redirect;
