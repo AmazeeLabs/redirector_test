@@ -1,6 +1,11 @@
 <?php
 //error_reporting(0);
 
+// DONT CACHE!
+header("Expires: Sun, 07 Aug 1987 12:34:56 GMT");
+header('Cache-Control: no-cache');
+header('Pragma: no-cache');
+
 // include the library
 include 'dispatch.php';
 
