@@ -13,7 +13,9 @@ include 'dispatch.php';
 config('source', 'config/config.ini');
 // define your routes
 
-if (in_array($_SERVER['HTTP_HOST'], config('servicehost'))) {
+$http_host = strtolower($_SERVER['HTTP_HOST']);
+
+if (in_array($http_host, config('servicehost'))) {
     echo "Service is up - You are connecting with a Servicehost";
     die();
 }
@@ -33,14 +35,14 @@ get('/index', function () {
         return $redirect;
     },config('cache.ttl'));
 
-    if(array_key_exists($_SERVER['HTTP_HOST'], $domains)) {
-        _log(date(DATE_ISO8601).' - [SUCCESS] - REDIRECTED '.$_SERVER['HTTP_HOST'].' >> '.trim($domains[$_SERVER['HTTP_HOST']]));
-        redirect($domains[$_SERVER['HTTP_HOST']]);
+    if(array_key_exists($http_host, $domains)) {
+        _log(date(DATE_ISO8601).' - [SUCCESS] - REDIRECTED '.$http_host.' >> '.trim($domains[$http_host]));
+        redirect($domains[$http_host]);
     }
     else
     {
-        echo "No configuration found for this Domain! - " .$_SERVER['HTTP_HOST'] ;
-        _log(date(DATE_ISO8601).' - [ERROR] - Domain '.$_SERVER['HTTP_HOST'].' has no config');
+        echo "No configuration found for this Domain! - " .$http_host ;
+        _log(date(DATE_ISO8601).' - [ERROR] - Domain '.$http_host.' has no config');
     }
 
 });
