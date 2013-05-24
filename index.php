@@ -13,9 +13,7 @@ include 'dispatch.php';
 config('source', 'config/config.ini');
 // define your routes
 
-$http_host = strtolower($_SERVER['HTTP_HOST']);
-
-if (in_array($http_host, config('servicehost'))) {
+if (in_array($_SERVER['HTTP_HOST'], config('servicehost'))) {
     echo "Service is up - You are connecting with a Servicehost";
     die();
 }
