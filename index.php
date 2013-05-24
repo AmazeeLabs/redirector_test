@@ -21,6 +21,7 @@ if (in_array($http_host, config('servicehost'))) {
 }
 
 get('/index', function () {
+    $http_host = strtolower($_SERVER['HTTP_HOST']);
     $domains = cache('domains', function() {
         _log(date(DATE_ISO8601).' - [INFO] - Reloading Data');
         $data = glob('redir/*');
