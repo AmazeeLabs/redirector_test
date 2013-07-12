@@ -1,1 +1,1 @@
-http://www.kpmg.com/CH/de/Seiten/default.aspx
+http://www.kpmg.com/CH/de/about/Our-Commitment/kpmg-foundation/Seiten/default.aspx
