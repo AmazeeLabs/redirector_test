@@ -26,10 +26,10 @@ function site_path(){
 
   if (config('site.url') == null)
       error(500, '[site.url] is not set');
-  
+
   if (!$_path)
     $_path = rtrim(parse_url(config('site.url'), PHP_URL_PATH),'/');
-  
+
   return $_path;
 }
 
@@ -209,7 +209,7 @@ function redirect(/* $code_or_path, $path_or_cond, $cond */) {
   $argc = count($argv);
 
   $path = null;
-  $code = 302;
+  $code = 301;
   $cond = true;
 
   switch ($argc) {
@@ -486,7 +486,7 @@ function flash($key, $msg = null, $now = false) {
 function dispatch() {
 
   $path = $_SERVER['REQUEST_URI'];
-  
+
   if (config('site.url') !== null)
     $path = preg_replace('@^'.preg_quote(site_path()).'@', '', $path);
 
