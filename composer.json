@@ -1,0 +1,12 @@
+{
+    "name": "bastianwidmer/redirect-custom",
+    "authors": [
+        {
+            "name": "Bastian Widmer",
+            "email": "b.widmer@dasrecht.net"
+        }
+    ],
+    "require": {
+      "dispatch/dispatch": "2.*"
+    }
+}
