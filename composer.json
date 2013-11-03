@@ -7,6 +7,7 @@
         }
     ],
     "require": {
-      "dispatch/dispatch": "2.*"
+      "dispatch/dispatch": "2.*",
+      "dispatch/dispatch-extras": "dev-master"
     }
 }
