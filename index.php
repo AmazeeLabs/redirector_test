@@ -15,27 +15,34 @@ if (in_array($_SERVER['HTTP_HOST'], config('servicehost'))) {
 }
 
 // Handle Paths. If we encounter a path we dynamically use this as our router if not we use the /
-if (isset($_SERVER['PATH_INFO']))
+if (isset($_SERVER['REDIRECT_URL']))
 {
-    $url = $_SERVER['PATH_INFO'];
+    $url = $_SERVER['REDIRECT_URL'];
 }
 else
 {
-    $url = '/';
+    $url = '';
 
 }
 
 on('*', $url, function () {
-    $http_host = strtolower($_SERVER['HTTP_HOST']);
-    $data = glob('redir/*');
 
-    foreach ($data as $d) {
-        // load redirections from filesystem
-        $redirect[strtolower(str_replace('redir/', '', $d)) ] = trim(file_get_contents($d));
-        // modify array key to match www. domains too
-        $redirect[strtolower(str_replace('redir/', 'www.', $d)) ] = trim(file_get_contents($d));
-    }
-    $domains = $redirect;
+    $http_host = strtolower($_SERVER['HTTP_HOST']);
+
+    $domains = cache('domains', function(){
+        send_remote_syslog('[INFO] - Reloading Data');
+        $data = glob('redir/*');
+
+        foreach ($data as $d) {
+            // load redirections from filesystem
+            $redirect[strtolower(str_replace('redir/', '', $d)) ] = trim(file_get_contents($d));
+            // modify array key to match www. domains too
+            $redirect[strtolower(str_replace('redir/', 'www.', $d)) ] = trim(file_get_contents($d));
+        }
+        return $redirect;
+
+    },config('cache.ttl'));
+
     if (array_key_exists($http_host, $domains)) {
         send_remote_syslog('[SUCCESS] - REDIRECTED '.$http_host.' >> '.trim($domains[$http_host]));
         redirect($domains[$http_host] . $_SERVER['REQUEST_URI'], 301);
@@ -46,12 +53,18 @@ on('*', $url, function () {
     }
 });
 
+on('GET', '/clearcache', function(){
+    cache_invalidate('domains');
+    echo "Cache flushed";
+    send_remote_syslog('[INFO] - Cache flushed');
+
+});
 // Helper Function to send Syslog Events to our Graylog Server
-function send_remote_syslog($message, $component = "web", $program = "amazee-redirect-custom") {
+function send_remote_syslog($message, $component = "amazee-redirect-custom") {
   $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
   foreach(explode("\n", $message) as $line) {
-    $syslog_message = "<22>" . date('M d H:i:s ') . $program . ' ' . $component . ': ' . $line;
-    socket_sendto($sock, $syslog_message, strlen($syslog_message), 0, 'amalabs2.nine.ch', 515);
+    $syslog_message = "<22>" . date('M d H:i:s ') . $_SERVER['SERVER_ADDR'] . ' ' . $component . ': ' . $line;
+    socket_sendto($sock, $syslog_message, strlen($syslog_message), 0, 'amalabs3.nine.ch', 515);
   }
   socket_close($sock);
 }
