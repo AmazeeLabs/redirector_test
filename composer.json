@@ -8,6 +8,6 @@
     ],
     "require": {
       "dispatch/dispatch": "2.*",
-      "dispatch/dispatch-extras": "dev-master"
+      "dispatch/dispatch-extras": "0.0.1"
     }
 }
