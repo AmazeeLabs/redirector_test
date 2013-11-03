@@ -30,7 +30,7 @@ on('*', $url, function () {
     $http_host = strtolower($_SERVER['HTTP_HOST']);
 
     $domains = cache('domains', function(){
-        send_remote_syslog('[INFO] - Reloading Data');
+        send_remote_syslog('[INFO] - Reloading Data', '190');
         $data = glob('redir/*');
 
         foreach ($data as $d) {
@@ -44,26 +44,26 @@ on('*', $url, function () {
     },config('cache.ttl'));
 
     if (array_key_exists($http_host, $domains)) {
-        send_remote_syslog('[SUCCESS] - REDIRECTED '.$http_host.' >> '.trim($domains[$http_host]));
+        send_remote_syslog('[SUCCESS] - REDIRECTED '.$http_host.' >> '.trim($domains[$http_host]), '189');
         redirect($domains[$http_host] . $_SERVER['REQUEST_URI'], 301);
 
     } else {
         echo "No configuration found for this Domain! - " . $http_host;
-        send_remote_syslog('[ERROR] - Domain has no config: '.$http_host);
+        send_remote_syslog('[ERROR] - Domain has no config: '.$http_host, '187');
     }
 });
 
 on('GET', '/clearcache', function(){
     cache_invalidate('domains');
     echo "Cache flushed";
-    send_remote_syslog('[INFO] - Cache flushed');
+    send_remote_syslog('[INFO] - Cache flushed', '190');
 
 });
 // Helper Function to send Syslog Events to our Graylog Server
-function send_remote_syslog($message, $component = "amazee-redirect-custom") {
+function send_remote_syslog($message, $severity = '191', $component = "amazee-redirect-custom") {
   $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
   foreach(explode("\n", $message) as $line) {
-    $syslog_message = "<22>" . date('M d H:i:s ') . $_SERVER['SERVER_ADDR'] . ' ' . $component . ': ' . $line;
+    $syslog_message = "<". $severity .">" . date('M d H:i:s ') . $_SERVER['SERVER_ADDR'] . ' ' . $component . ': ' . $line;
     socket_sendto($sock, $syslog_message, strlen($syslog_message), 0, 'amalabs3.nine.ch', 515);
   }
   socket_close($sock);
