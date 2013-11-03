@@ -1,0 +1,97 @@
+[
+    {
+        "name": "dispatch/dispatch",
+        "version": "2.6.1",
+        "version_normalized": "2.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/noodlehaus/dispatch.git",
+            "reference": "f01cad1345f82e89b00362b33080b6f0cb746ec3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/noodlehaus/dispatch/zipball/f01cad1345f82e89b00362b33080b6f0cb746ec3",
+            "reference": "f01cad1345f82e89b00362b33080b6f0cb746ec3",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">= 5.4.0"
+        },
+        "time": "2013-09-30 14:41:01",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/dispatch.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jesus A. Domingo",
+                "homepage": "http://github.com/noodlehaus",
+                "role": "Developer"
+            }
+        ],
+        "description": "a microframework/front-controller",
+        "homepage": "http://noodlehaus.github.com/dispatch/",
+        "keywords": [
+            "framework",
+            "micro",
+            "microframework",
+            "microphp",
+            "router"
+        ]
+    },
+    {
+        "name": "dispatch/dispatch-extras",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/noodlehaus/dispatch-extras.git",
+            "reference": "58f2705738e6d435a5f998affeb31dd492260524"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/noodlehaus/dispatch-extras/zipball/58f2705738e6d435a5f998affeb31dd492260524",
+            "reference": "58f2705738e6d435a5f998affeb31dd492260524",
+            "shasum": ""
+        },
+        "require": {
+            "dispatch/dispatch": "2.*"
+        },
+        "time": "2013-09-22 15:24:56",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "files": [
+                "src/dispatch-extras.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jesus A. Domingo",
+                "email": "jesus.domingo@gmail.com"
+            }
+        ],
+        "description": "Additional utilities for Dispatch Micro-framework"
+    }
+]
