@@ -45,7 +45,9 @@ on('*', $url, function () {
 
     if (array_key_exists($http_host, $domains)) {
         send_remote_syslog('[SUCCESS] - REDIRECTED '.$http_host.' >> '.trim($domains[$http_host]), '189');
-        redirect($domains[$http_host] . $_SERVER['REQUEST_URI'], 301);
+        // Removing / since this would make the redirects sometimes unusable
+        $request_uri = trim($_SERVER['REQUEST_URI'], '/');
+        redirect($domains[$http_host] . $request_uri, 301);
 
     } else {
         echo "No configuration found for this Domain! - " . $http_host;
