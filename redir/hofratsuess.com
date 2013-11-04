@@ -1,1 +1,1 @@
-http://hofratsuess.ch/ 
+http://www.hofratsuess.ch/
