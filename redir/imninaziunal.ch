@@ -1,1 +1,1 @@
-http://sgg-ssup.ch/node/308
+http://www.chymne.ch/
