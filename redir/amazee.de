@@ -1,1 +1,1 @@
-http://amazeelabs.com
+http://www.amazeelabs.com/

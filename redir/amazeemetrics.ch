@@ -1,1 +1,1 @@
-http://www.amazeemetrics.com
+http://www.amazeemetrics.com/
