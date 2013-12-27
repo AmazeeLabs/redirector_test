@@ -1,1 +1,1 @@
-http://www.chymne.ch/
+http://www.chymne.ch/rm/
