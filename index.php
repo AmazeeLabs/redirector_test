@@ -62,7 +62,7 @@ on('GET', '/clearcache', function(){
 
 });
 // Helper Function to send Syslog Events to our Graylog Server
-function send_remote_syslog($message, $severity = '191', $component = "amazee-redirect-custom") {
+function send_remote_syslog($message, $severity = '191', $component = "amazee_redirect_custom") {
   $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
   foreach(explode("\n", $message) as $line) {
     $syslog_message = "<". $severity .">" . date('M d H:i:s ') . $_SERVER['SERVER_ADDR'] . ' ' . $component . ': ' . $line;
