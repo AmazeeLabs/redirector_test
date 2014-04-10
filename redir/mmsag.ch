@@ -1,1 +1,1 @@
-http://www.nspublish.ch/de/content/unternehmen/
+http://www.nspublish.ch/de/content/multimedia-solutions-ag
