@@ -1,1 +1,1 @@
-http://www.nspublish.ch
+http://www.nspublish.ch/
