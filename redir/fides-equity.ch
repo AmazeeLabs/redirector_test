@@ -1,1 +1,1 @@
-http://www.fidesbusinesspartner.ch
+http://www.fidesbusinesspartner.ch/
