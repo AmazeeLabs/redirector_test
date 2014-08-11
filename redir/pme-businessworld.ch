@@ -1,1 +1,1 @@
-http://www.kmu-businessworld.ch/f
+http://www.kmu-businessworld.ch/fr
